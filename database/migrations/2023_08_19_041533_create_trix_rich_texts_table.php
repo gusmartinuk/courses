@@ -31,6 +31,7 @@ class CreateTrixRichTextsTable extends Migration
             $table->boolean('is_pending')->default(1);
             $table->timestamps();
         });
+
     }
 
     /**

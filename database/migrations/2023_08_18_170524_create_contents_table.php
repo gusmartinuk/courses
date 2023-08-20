@@ -17,8 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->text('description');
-            $table->unsignedBigInteger('Lesson_id');
-            $table->foreign('Lesson_id')->references('id')->on('Lessons');
+            $table->unsignedBigInteger('category_id');
+            $table->foreign('category_id')->references('id')->on('categories');
             $table->integer('sort_order')->default(0);
             $table->timestamps(); // Created at and updated at
         });

@@ -9,7 +9,7 @@ class RenameCategoriesTableToLessons extends Migration
     public function up()
     {
         Schema::rename('categories', 'lessons');
-    }
+     }
 
     public function down()
     {

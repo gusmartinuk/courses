@@ -14,9 +14,9 @@ return new class extends Migration
     public function up()
     {
         Schema::table('contents', function (Blueprint $table) {
-            #$table->renameColumn('content_id', 'lesson_id');
-            $table->dropForeign('contents_content_id_foreign'); // Drop the old foreign key
-            $table->foreign('lesson_id')->references('id')->on('lessons'); // Create a new foreign key
+                $table->renameColumn('category_id', 'lesson_id');
+                $table->dropForeign('contents_category_id_foreign'); // Drop the old foreign key
+                $table->foreign('lesson_id')->references('id')->on('lessons'); // Create a new foreign key
         });
     }
     /**

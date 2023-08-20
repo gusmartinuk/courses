@@ -13,7 +13,6 @@ class Content extends Model
     // Define relationships or additional methods here
     public function lesson()
     {
-        return $this->belongsTo(Lesson::class);
+        return $this->belongsTo(Lesson::class, 'lesson_id');
     }
-
 }

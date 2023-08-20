@@ -35,10 +35,10 @@ Route::middleware('auth')->group(function () {
     Route::prefix('/courses')->group(function () {
         Route::get('/', [CourseController::class, 'index'])->name('courses.index');
         Route::get('/create', [CourseController::class, 'create'])->name('courses.create');
-        Route::post('/', [CourseController::class, 'store'])->name('courses.store');
+        Route::post('/store', [CourseController::class, 'store'])->name('courses.store');
         Route::get('/{course}/edit', [CourseController::class, 'edit'])->name('courses.edit');
         Route::put('/{course}', [CourseController::class, 'update'])->name('courses.update');
-        Route::delete('/{course}', [CourseController::class, 'destroy'])->name('courses.destroy');
+        Route::delete('/{course}', [CourseController::class, 'destroy'])->name('courses.destroy'); // Fix the route name here
     });
 
     Route::prefix('/courses/{course_id}/lessons')->group(function () {
@@ -60,6 +60,9 @@ Route::middleware('auth')->group(function () {
         Route::put('/{content}', [ContentController::class, 'update'])->name('contents.update');
         Route::delete('/{content}', [ContentController::class, 'destroy'])->name('contents.destroy');
     });
+
+
+
 
 require __DIR__.'/auth.php';
 
