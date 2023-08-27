@@ -1,4 +1,15 @@
-@extends('layouts.app')
+@extends('layouts.pub')
+
+@section('sidebar')
+    @foreach ($contents as $content)
+        <li class="nav-item">
+            <a href="#" class="nav-link px-2 text-truncate">
+                <i class="bi bi-house fs-5"></i>
+                <span class="d-none d-sm-inline">{{ $content->title }}</span>
+            </a>
+        </li>
+    @endforeach
+@endsection
 
 @section('content')
 <div class="container">
