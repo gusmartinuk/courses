@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\LessonController;
 use App\Http\Controllers\ContentController;
+use App\Http\Controllers\PublishController;
 
 
 /*
@@ -17,6 +18,11 @@ use App\Http\Controllers\ContentController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+Route::get('/pub', [PublishController::class, 'index'])->name('publish.index');
+Route::get('/pub/{course_id}', [PublishController::class, 'detail'])->name('publish.detail');
+
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -44,7 +50,7 @@ Route::middleware('auth')->group(function () {
     Route::prefix('/courses/{course_id}/lessons')->group(function () {
         Route::get('/', [LessonController::class, 'index'])->name('lessons.index');
         Route::get('/create', [LessonController::class, 'create'])->name('lessons.create');
-        Route::post('/', [LessonController::class, 'store'])->name('lessons.store');
+        // Route::post('/', [LessonController::class, 'store'])->name('lessons.store');
         Route::get('/{lesson}/edit', [LessonController::class, 'edit'])->name('lessons.edit');
         Route::put('/{lesson}', [LessonController::class, 'update'])->name('lessons.update');
 
@@ -60,8 +66,6 @@ Route::middleware('auth')->group(function () {
         Route::put('/{content}', [ContentController::class, 'update'])->name('contents.update');
         Route::delete('/{content}', [ContentController::class, 'destroy'])->name('contents.destroy');
     });
-
-
 
 
 require __DIR__.'/auth.php';
