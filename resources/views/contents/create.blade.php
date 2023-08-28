@@ -10,19 +10,20 @@
             <input type="text" name="title" class="form-control" required>
         </div>
         <div class="mb-3">
-            <label for="lesson_id" class="form-label">Lesson</label>
-            <select name="lesson_id" class="form-control" required>
+            <label for="course_id" class="form-label">Courses</label>
+            <select name="course_id" class="form-control" required>
                 <option value="">Select a Lesson</option>
-                @foreach ($lessons as $lesson)
-                    <option value="{{ $lesson->id }}">
-                        {{ $lesson->name }} - {{ $lesson->course->name }}
+                @foreach ($courses as $course)
+                    <option value="{{ $course->id }}">
+                        {{ $course->name }}
                     </option>
                 @endforeach
             </select>
         </div>
         <div class="mb-3">
             <label for="description" class="form-label">Description</label>
-            <textarea name="description" class="form-control" rows="4" required></textarea>
+            <div id="editor" style="height: 400px;"></div>
+            <input type="hidden" id="editor-input" name="description" value="">
         </div>
         <div class="mb-3">
             <label for="sort_order" class="form-label">Sort Order</label>
@@ -31,4 +32,28 @@
         <button type="submit" class="btn btn-primary">Create Content</button>
     </form>
 </div>
+
+<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+
+<!-- Initialize Quill editor -->
+<script>
+    var quill = new Quill('#editor', {
+        theme: 'snow',
+        modules: {
+            toolbar: [
+                [{ 'header': [1, 2, false] }],
+                ['bold', 'italic', 'underline', 'strike'],
+                ['link', 'image'],
+                [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+                ['clean']
+            ]
+        }
+    });
+
+    var editorInput = document.getElementById('editor-input');
+    quill.on('text-change', function() {
+        editorInput.value = quill.root.innerHTML;
+    });
+</script>
+
 @endsection

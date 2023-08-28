@@ -9,10 +9,10 @@ class Content extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title', 'description','lesson_id','sort_order']; // Specify fillable columns
+    protected $fillable = ['title', 'description','course_id','sort_order']; // Specify fillable columns
     // Define relationships or additional methods here
-    public function lesson()
+    public function course()
     {
-        return $this->belongsTo(Lesson::class, 'lesson_id');
+        return $this->belongsTo(Course::class);
     }
 }

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Lesson; // Import the Lesson model
 use App\Models\Course; // Import the Course model
 use App\Models\Content; // Import the Content model
 
@@ -11,15 +10,15 @@ class ContentController extends Controller
 {
     public function index()
     {
-        $contents = Content::with('lesson.course')->get();
+        $contents = Content::with('course')->get();
         return view('contents.index', compact('contents'));
     }
 
 
     public function create()
     {
-        $lessons = Lesson::with('course')->get(); // Load lessons with their associated courses
-        return view('contents.create', compact('lessons'));
+        $courses = Course::all();
+        return view('contents.create', compact('courses'));
     }
 
 
@@ -32,8 +31,8 @@ class ContentController extends Controller
 
     public function edit(Content $content)
     {
-        $lessons = Lesson::with('course')->get(); // Load lessons with their associated courses
-        return view('contents.edit', compact('content', 'lessons'));
+        $courses = Course::all();
+        return view('contents.edit', compact('content','courses'));
     }
 
 
@@ -42,7 +41,7 @@ class ContentController extends Controller
         $content->update([
             'title' => $request->input('title'),
             'description' => $request->input('description'), // Ensure this field matches the name attribute of the Trix input
-            'lesson_id' => $request->input('lesson_id'),
+            'course_id' => $request->input('course_id'),
             'sort_order' => $request->input('sort_order'),
         ]);
 

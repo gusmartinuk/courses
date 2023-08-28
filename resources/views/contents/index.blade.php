@@ -8,7 +8,6 @@
         <thead>
             <tr>
                 <th>Title</th>
-                <th>Lesson Name</th>
                 <th>Course Name</th>
                 <th>Sort Order</th>
                 <th>Actions</th>
@@ -18,8 +17,7 @@
             @foreach ($contents as $content)
                 <tr>
                     <td>{{ $content->title }}</td>
-                    <td>{{ optional($content->lesson)->name }}</td>
-                    <td>{{ optional($content->lesson->course)->name }}</td>
+                    <td>{{ optional($content->course)->name }}</td>
                     <td>{{ $content->sort_order }}</td>
                     <td>
                         <a href="{{ route('contents.edit', $content->id) }}" class="btn btn-sm btn-primary">Edit</a>

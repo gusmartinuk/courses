@@ -17,7 +17,6 @@
                 <td>{{ $course->name }}</td>
                 <td>{{ $course->status }}</td>
                 <td>
-                    <a href="{{ route('lessons.index', $course->id) }}" class="btn btn-primary">Lessons</a>
                     <a href="{{ route('courses.edit', $course->id) }}" class="btn btn-primary">Edit</a>
                     <form action="{{ route('courses.destroy', $course->id) }}" method="POST" style="display: inline-block">
                         @csrf

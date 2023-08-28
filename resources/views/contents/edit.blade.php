@@ -11,11 +11,12 @@
             <input type="text" name="title" class="form-control" value="{{ $content->title }}" required>
         </div>
         <div class="mb-3">
-            <label for="lesson_id" class="form-label">Lesson</label>
-            <select name="lesson_id" class="form-control" required>
-                @foreach ($lessons as $lesson)
-                    <option value="{{ $lesson->id }}" {{ $lesson->id == $content->lesson_id ? 'selected' : '' }}>
-                        {{ $lesson->name }} - {{ $lesson->course->name }}
+            <label for="course_id" class="form-label">Courses</label>
+            <select name="course_id" class="form-control" required>
+                <option value="">Select related Course</option>
+                @foreach ($courses as $course)
+                    <option value="{{ $course->id }}" {{ $course->id == $content->course_id ? 'selected' : '' }}>
+                        {{ $course->name }}
                     </option>
                 @endforeach
             </select>

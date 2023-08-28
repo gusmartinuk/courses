@@ -13,11 +13,10 @@
 
 @section('content')
 <div class="container">
-    <h1>{{ optional($contents[0]->lesson->course)->name  }}</h1>
+    <h1>{{ optional($contents[0]->course)->name  }}</h1>
     <table class="table">
         <thead>
             <tr>
-                <th>Lesson Name</th>
                 <th>Title</th>
                 <th>Sort Order</th>
             </tr>
@@ -25,7 +24,6 @@
         <tbody>
             @foreach ($contents as $content)
                 <tr data-bs-toggle="collapse" data-bs-target="#row{{$content->id}}-details" aria-expanded="false">
-                    <td>{{ optional($content->lesson)->name }}</td>
                     <td>{{ $content->title }}</td>
                     <td>Expand for more details</td>
                 </tr>
