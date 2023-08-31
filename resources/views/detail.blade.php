@@ -12,14 +12,6 @@
 @endsection
 
 @section('content')
-<div class="container">
-    <div class="card">
-        <div class="card-header">
-            <h5>{{ $content->title }}</h5>
-        </div>
-        <div class="card-body">
-            {!! $content->description !!}
-        </div>
-    </div>
-</div>
+    <h5>{{ $content->title }}</h5>
+    {!! $content->description !!}
 @endsection
