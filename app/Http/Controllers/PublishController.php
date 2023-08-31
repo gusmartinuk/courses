@@ -14,10 +14,11 @@ class PublishController extends Controller
         $courses = Course::all();
         return view('publish', compact('courses'));
     }
-   public function detail($course_id)
+   public function detail($course_id,$content_id)
     {
-        $contents = Content::with('course')->get();
-        return view('detail', compact('contents'));
+        $contentlist = Content::with('course')->select('title', 'id')->where('course_id','=',$course_id)->get();
+        $content = Content::with('course')->where('id', $content_id)->first();
+        return view('detail', compact('contentlist','content'));
     }
 
 }
