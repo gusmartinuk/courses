@@ -14,11 +14,30 @@ class PublishController extends Controller
         $courses = Course::all();
         return view('publish', compact('courses'));
     }
-   public function detail($course_id,$content_id)
+    public function detail($course_id, $content_id)
     {
-        $contentlist = Content::with('course')->select('title', 'id')->where('course_id','=',$course_id)->get();
+        // Get the current content
         $content = Content::with('course')->where('id', $content_id)->first();
-        return view('detail', compact('contentlist','content'));
+
+        // Get the previous content
+        $previousContent = Content::with('course')
+            ->where('course_id', $course_id)
+            ->where('sort_order', '<', $content->sort_order)
+            ->orderBy('sort_order', 'desc')
+            ->first();
+
+        // Get the next content
+        $nextContent = Content::with('course')
+            ->where('course_id', $course_id)
+            ->where('sort_order', '>', $content->sort_order)
+            ->orderBy('sort_order', 'asc')
+            ->first();
+
+
+
+        $contentlist = Content::with('course')->select('title', 'id')->where('course_id','=',$course_id)->orderBy('sort_order', 'asc')->get();
+
+        return view('detail', compact('content', 'previousContent', 'nextContent','contentlist'));
     }
 
 }

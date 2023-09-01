@@ -12,7 +12,7 @@
             @foreach($courses as $course)
                 <tr>
                     <td>
-                        <a href="{{ route('publish.detail', $course->id) }}" class="link-dark">{{ $course->name }}</a>
+                        <a href="{{ route('publish.detail', ['course_id' => $course->id, 'content_id' => 1]) }}" class="link-dark">{{ $course->name }}</a>
                     </td>
                 </tr>
             @endforeach

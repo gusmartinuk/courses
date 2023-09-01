@@ -19,7 +19,7 @@ use App\Http\Controllers\PublishController;
 |
 */
 
-Route::get('/pub', [PublishController::class, 'index'])->name('publish.index');
+Route::get('/list', [PublishController::class, 'index'])->name('publish.index');
 Route::get('/pub/{course_id}/{content_id}', [PublishController::class, 'detail'])->name('publish.detail');
 
 
